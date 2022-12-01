@@ -2,7 +2,7 @@
 # 11.30.22
 # v1.0
 
-$dbl_url = 'https://raw.githubusercontent.com/mattryczek/officexml/main/DBL.xml'
+$dbl_url = 'https://raw.githubusercontent.com/mattryczek/officexml/main/configs/DBL.xml'
 $odt_url = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117"
 
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process -FilePath powershell.exe -Verb RunAs -ArgumentList '-Command', 'cd ${Get-Location}; & .\smart_install.ps1' }
@@ -10,8 +10,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 $host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.size(130,2000)
 $host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.size(130,30)
 
-$sig = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/officexml/main/sig.txt).Content
-$motd = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/officexml/main/motd.txt).Content
+$sig = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/officexml/main/assets/sig.txt).Content
+$motd = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/officexml/main/assets/motd.txt).Content
 
 Write-Output $sig`n`r
 Write-Output `n`n`r$motd
