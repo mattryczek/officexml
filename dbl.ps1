@@ -29,7 +29,7 @@ if ($url) {
     Start-BitsTransfer -Priority High -TransferType Download -Source $url -Destination ".deleteme/odt.exe"
 
     Write-Output "Extracting setup.exe from Office Deployment Tool"
-    .\.deleteme\odt.exe /extract:.deleteme/ /quiet
+    Start-Process -FilePath .deleteme\odt.exe -Verb RunAs -ArgumentList "/extract:.deleteme/ /quiet"
     Start-Sleep -Seconds 1.5
     Remove-Item .deleteme\*.xml
 
@@ -38,8 +38,6 @@ if ($url) {
 
     Write-Output "Done. Launching setup.exe with DBL config"
     Start-Process -FilePath .deleteme\setup.exe -Verb RunAs -ArgumentList "/configure .deleteme/DBL.xml"
-
-
 } else {
     Write-Output "Cannot get URL for Office Deployment Tool. Shutting down..."
     return
