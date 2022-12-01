@@ -4,9 +4,8 @@
 
 $dbl_url = 'https://raw.githubusercontent.com/mattryczek/officexml/main/DBL.xml'
 $odt_url = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117"
-$curr_dir = Get-Location
 
-if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process -FilePath powershell.exe -Verb RunAs -ArgumentList '-Command', 'cd ${curr_dir}; & .\smart_install.ps1' }
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process -FilePath powershell.exe -Verb RunAs -ArgumentList '-Command', 'cd ${Get-Location}; & .\smart_install.ps1' }
 
 $host.UI.RawUI.BufferSize = New-Object System.Management.Automation.Host.size(130,2000)
 $host.UI.RawUI.WindowSize = New-Object System.Management.Automation.Host.size(130,30)
@@ -15,7 +14,7 @@ $sig = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/offi
 $motd = (Invoke-WebRequest -URI https://raw.githubusercontent.com/mattryczek/officexml/main/motd.txt).Content
 
 Write-Output $sig`n`r
-Write-Output `n`n`r$motd`n`r
+Write-Output `n`n`r$motd
 Write-Output '------------------------------------------------------------'
 Write-Output "Getting latest Office Deployment Tool URL..."
 
